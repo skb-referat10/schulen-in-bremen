@@ -105,8 +105,6 @@
   footer{background:#fff; border-top:1px solid #E3E6EA; padding:16px 0 calc(16px + env(safe-area-inset-bottom))}
   footer img{height:40px; width:auto; display:block; margin-bottom:12px}
   footer p{margin:0; font-size:14px; color:var(--text-2)}
-  footer .links{margin-top:8px}
-  footer .links a{margin-right:14px}
 
   details.ds{margin-top:10px; font-size:14px; color:var(--text-2)}
   details.ds summary{cursor:pointer; color:var(--navy); font-weight:600}
@@ -208,7 +206,6 @@
   <img src="kontakt-logo-bremen.png" alt="Bremen Bremerhaven. Innovativ aus Tradition">
   <p>Verantwortlich: Referat 14 „Personalmanagement an Schulen“<br>
   Kontakt: <a href="mailto:referat14@bildung.bremen.de">referat14@bildung.bremen.de</a></p>
-  <p class="links"><a href="#" id="link-impressum">Impressum</a><a href="#" id="link-datenschutz">Datenschutz</a></p>
 </div></footer>
 
 <script>
@@ -218,10 +215,6 @@
 var CONFIG = {
   // Adresse des Versand-Skripts (mail.php). Leer lassen = Testmodus (es wird nichts verschickt).
   ENDPOINT: "https://skb.4lima.de/mail.php",
-
-  // Links im Fuß der Seite (leer = Link wird ausgeblendet)
-  IMPRESSUM: "",
-  DATENSCHUTZ: "",
 
   // Schulen mit Nummer, Name, Region, Stadtteil. KEINE E-Mail-Adressen hier eintragen!
   // Die Adressen stehen nur im Versand-Skript auf dem Server.
@@ -246,11 +239,6 @@ var CONFIG = {
 (function(){
   var $ = function(id){ return document.getElementById(id); };
   var form = $("formular"), startzeit = Date.now();
-
-  // Fußlinks
-  [["link-impressum","IMPRESSUM"],["link-datenschutz","DATENSCHUTZ"]].forEach(function(p){
-    var a = $(p[0]); if (CONFIG[p[1]]) { a.href = CONFIG[p[1]]; a.target = "_blank"; a.rel = "noopener"; } else { a.hidden = true; }
-  });
 
   // Schulen als Kreuzchen anzeigen; ?schule=… im Link kreuzt vorab an
   var vorab = (new URLSearchParams(location.search).get("schule") || "").split(",").map(function(x){ return x.trim(); });
